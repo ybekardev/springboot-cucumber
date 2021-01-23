@@ -34,7 +34,7 @@ build/
 *.mvnw*
 *.mvnw
 *.mvnw/
-*.mvnw.cmd
+*mvnw.cmd
 *mvnw
 .mvnw
 .mvn
