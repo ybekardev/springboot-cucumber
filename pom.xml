@@ -18,6 +18,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>14</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,7 +43,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -59,12 +59,13 @@
 			<artifactId>cucumber-junit</artifactId>
 			<version>1.2.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>compile</scope>
+			<version>4.13.1</version>
 		</dependency>
+
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
@@ -75,28 +76,43 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>4.2.3</version>
 		</dependency>
+		<!-- https://www.youtube.com/watch?v=33bH5JtK-d4&ab_channel=AutomationFraternity -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>6.9.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M5</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 				<configuration>
-					<runOrder>reversealphabetical</runOrder>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<runOrder>alphabetical</runOrder>
 					<includes>
 						<!--<runOrder>reversealphabetical</runOrder>-->
 						<!--<include>**/*Runner.java</include>-->
-						<include>**/CucumberApplication.java</include>
-						<include>**/FailedRunner.java</include>
+						<include>**/ApplicationRunner.java</include>
+						<!--<include>**/FailedRunner.java</include>-->
 					</includes>
 					<testSourceDirectory>${basedir}/src/main/java/</testSourceDirectory>
 					<testClassesDirectory>${project.build.directory}/classes/</testClassesDirectory>
 					<failIfNoTests>false</failIfNoTests>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
-					<parallel>suites</parallel>
-					<threadCount>10</threadCount>
 					<testFailureIgnore>true</testFailureIgnore>
 				</configuration>
 			</plugin>
@@ -112,7 +128,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>Cucumber HTML Report</projectName>
+							<projectName>Automation Test Report</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<inputDirectory>${project.build.directory}</inputDirectory>
 							<jsonFiles>
@@ -122,30 +138,8 @@
 					</execution>
 				</executions>
 			</plugin>
-		<!--	<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20.1</version>
-				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
-				</configuration>
-			</plugin>-->
-			<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.8.1</version>
-			<configuration>
-				<source>1.8</source>
-				<target>1.8</target>
-			</configuration>
-		</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 		</plugins>
 	</build>
+
 
 </project>

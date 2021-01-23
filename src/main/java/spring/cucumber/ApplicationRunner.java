@@ -9,17 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @CucumberOptions(
         features = {"src/main/resources/features"},
         glue = {"spring.stepdefinitions"},
-        tags = {"@test"},
+        tags = {"@cukes"},
         dryRun = false,
         plugin = {
                 "pretty",
                 "html:target/cucumber-report",
                 "json:target/cucumber-report/cucumber.json",
                 "junit:target/cucumber-report/cucumber-results.xml",
-                "rerun:target/rerun.txt"
         }
 )
 @SpringBootApplication
-public class CucumberApplication {
+public class ApplicationRunner {
 	/* public static void main(String[] args) { SpringApplication.run(CucumberApplication.class, args); } */
 }
