@@ -8,10 +8,15 @@ import io.restassured.path.json.JsonPath;
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static spring.stepdefinitions.ApplicationHelper.jsonParser;
 
 public class TrialStepDef {
 
@@ -39,5 +44,23 @@ public class TrialStepDef {
     public void i_clear_all_request() {
         testScope.getNullInstance(testScope.response);
     }
+
+
+
+    @Given("The json file should include the value")
+    public void the_json_file_should_include_the_value() throws FileNotFoundException {
+            Object element = ApplicationHelper.test();
+            System.out.println(element);
+    }
+
+    @Given("The json file {string} node {string}should include the value {string}")
+    public void the_json_file_node_should_include_the_value(String fileName, String node, String nodeVal) throws FileNotFoundException {
+            Object val = jsonParser(fileName, node);
+            System.out.println("***");
+            assertEquals(val, nodeVal);
+            System.out.println(val);
+    }
+
+
     }
 
