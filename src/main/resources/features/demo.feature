@@ -16,3 +16,9 @@ Feature: Api Test
       |src/main/resources/payloads/payloadArray.json| customer[0].consumption_info.last_buy     | 2012-04-23 |
       |src/main/resources/payloads/payloadArray.json| customer[0].consumption_info.fav_product     |   Coke |
 
+  #@api
+  Scenario: emp name
+
+    When I send the get request to "http://dummy.restapiexample.com/api/v1/employee/5"
+    Then I validate the node "data[5].employee_name" equals to "Brielle Williamson"
+    #Then I validate the node "node" equals to "nodeVal" from "response"

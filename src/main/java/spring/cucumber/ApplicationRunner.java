@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @CucumberOptions(
         features = {"src/main/resources/features"},
         glue = {"spring.stepdefinitions"},
-        tags = {"@demo"},
+        tags = {"@api"},
         dryRun = false,
         plugin = {
                 "pretty",
