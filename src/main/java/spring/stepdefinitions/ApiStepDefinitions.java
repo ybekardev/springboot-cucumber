@@ -15,9 +15,16 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.Environment;
+import org.springframework.test.web.servlet.htmlunit.webdriver.WebConnectionHtmlUnitDriver;
+import spring.config.SpringConfig;
 
 import static org.hamcrest.MatcherAssert.*;
 import java.io.IOException;
+import java.sql.Driver;
+
 import static org.hamcrest.Matchers.*;
 
 public class ApiStepDefinitions {
@@ -26,9 +33,27 @@ public class ApiStepDefinitions {
     public String emplocationUrl;
     public static String getEmpUrlCode;
     public static String empAccessToken;
-    //@Autowired
+    @Autowired
     TestScope testScope;
     static Response apiResponse;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    SpringConfig springConfig;
+
+    String mongodbUrl = environment.getProperty("mongodb.url");
+
+
+    @When("I log on the website {string}")
+    public void i_log_on_the_website(String string) {
+        //SpringConfig springConfig = new SpringConfig(); Autowired already
+        System.out.println("----------------------------------");
+        System.out.println(springConfig.stepDef());
+        System.out.println("Response: " + mongodbUrl);
+
+    }
 
     @When("I send the get request to {string}")
     public void i_send_the_get_request_to_and_save_the_response_as(String httpLink) {

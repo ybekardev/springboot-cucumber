@@ -2,5 +2,5 @@
   Feature: Log on the Pet Store
 
     @cukes
-    Scenario:
+    Scenario: PetStore UI
       When User logs on the "url" page with "userName" and "password"
