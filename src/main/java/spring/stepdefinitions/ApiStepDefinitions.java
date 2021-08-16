@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
@@ -26,7 +27,6 @@ import java.io.IOException;
 import java.sql.Driver;
 
 import static org.hamcrest.Matchers.*;
-
 public class ApiStepDefinitions {
 
     public static String generateEmpJWT;
